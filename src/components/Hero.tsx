@@ -57,23 +57,23 @@ const Hero = () => {
         <div className="md:w-1/2 pt-20 md:pt-0">
           <div className="transition-all duration-300 ease-out">
             <span className="inline-block px-3 py-1 text-xs tracking-wider bg-embroidery-beige/50 backdrop-blur-sm text-embroidery-charcoal rounded-full mb-6 animate-fade-in">
-              ARTISAN EMBROIDERY
+              HANTVERK BRODERI
             </span>
             <h1 className="hero-title text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-embroidery-charcoal leading-tight transition-transform duration-200 ease-out animate-fade-in">
-              Timeless Beauty<br />Threaded by Hand
+              Tidlös Skönhet<br />Broderad för Hand
             </h1>
             <p className="hero-subtitle mt-6 text-embroidery-charcoal/70 max-w-md transition-transform duration-200 ease-out animate-fade-in opacity-0 animation-delay-200" style={{ animationDelay: '200ms' }}>
-              Exquisite handcrafted embroidery that transforms ordinary materials into elegant, personalized works of art.
+              Utsökt handgjort broderi som förvandlar vanliga material till eleganta, personliga konstverk.
             </p>
             
             <div className="mt-10 animate-fade-in opacity-0" style={{ animationDelay: '400ms' }}>
               <a href="#gallery" className="relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium text-embroidery-charcoal bg-embroidery-beige rounded-md group mr-4">
                 <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-embroidery-gold rounded-full group-hover:w-56 group-hover:h-56"></span>
-                <span className="relative">View Gallery</span>
+                <span className="relative">Se Galleriet</span>
               </a>
               
               <a href="#contact" className="relative inline-block text-embroidery-charcoal hover:text-embroidery-gold transition-colors duration-300 btn-hover">
-                Get in Touch
+                Kontakta Oss
               </a>
             </div>
           </div>
@@ -88,8 +88,8 @@ const Hero = () => {
               <div className="absolute inset-0 bg-embroidery-gold opacity-10"></div>
               <div className="hero-image-inner transition-transform duration-200 ease-out">
                 <img 
-                  src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80" 
-                  alt="Elegant embroidery artwork on fabric"
+                  src="https://drive.google.com/uc?export=view&id=1KlScmSWBYuM76RO71RZAScQjc9DpN5N2" 
+                  alt="Elegant broderiverk på tyg"
                   className="w-full h-full object-cover filter brightness-95"
                 />
               </div>
@@ -99,7 +99,7 @@ const Hero = () => {
       </div>
       
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center animate-fade-in opacity-0" style={{ animationDelay: '800ms' }}>
-        <p className="text-xs text-embroidery-charcoal/60 tracking-widest mb-2">SCROLL</p>
+        <p className="text-xs text-embroidery-charcoal/60 tracking-widest mb-2">SCROLLA</p>
         <div className="w-0.5 h-10 bg-gradient-to-b from-embroidery-charcoal/5 to-embroidery-charcoal/30"></div>
       </div>
     </section>
