@@ -1,6 +1,11 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { Scissors } from 'lucide-react';
+import { loadStripe } from '@stripe/stripe-js';
+import { useToast } from '@/components/ui/use-toast';
+
+// Initialize Stripe - this is a publishable key, safe to include in client code
+const stripePromise = loadStripe('pk_test_51YOURSTRIPEPUBLISHABLEKEY');
 
 const services = [
   {
@@ -54,24 +59,27 @@ const services = [
 const products = [
   {
     id: 1,
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/9c38391c-696a-488b-bb6e-905aa7136ebd.png",
     title: "Personlig Tygväska",
     description: "Tygväska med ditt namn eller valfritt broderi, perfekt för vardagsbruk.",
-    price: "299 kr"
+    price: "299 kr",
+    priceId: "price_1YOURPRICEID1", // This would be your actual Stripe price ID
   },
   {
     id: 2,
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/9c38391c-696a-488b-bb6e-905aa7136ebd.png",
     title: "Broderad Necessär",
     description: "Stilfull necessär med unika broderier, perfekt för resan eller som present.",
-    price: "249 kr"
+    price: "249 kr",
+    priceId: "price_1YOURPRICEID2", // This would be your actual Stripe price ID
   },
   {
     id: 3,
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/9c38391c-696a-488b-bb6e-905aa7136ebd.png",
     title: "Anpassad Shoppingväska",
     description: "Slitstark och rymlig shoppingväska med plats för din unika design.",
-    price: "349 kr"
+    price: "349 kr",
+    priceId: "price_1YOURPRICEID3", // This would be your actual Stripe price ID
   }
 ];
 
@@ -80,6 +88,8 @@ const Services = () => {
   const shopRef = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
   const [isShopInView, setIsShopInView] = useState(false);
+  const [isLoading, setIsLoading] = useState<number | null>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     const servicesObserver = new IntersectionObserver(
@@ -115,6 +125,46 @@ const Services = () => {
       shopObserver.disconnect();
     };
   }, []);
+
+  const handleCheckout = async (priceId: string, productId: number) => {
+    setIsLoading(productId);
+    
+    try {
+      const stripe = await stripePromise;
+      if (!stripe) throw new Error("Stripe failed to initialize");
+      
+      // Create a checkout session via our API
+      const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ priceId }),
+      });
+      
+      if (!response.ok) throw new Error('Network response was not ok');
+      
+      const session = await response.json();
+      
+      // Redirect to Stripe Checkout
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
+      
+      if (result.error) {
+        throw new Error(result.error.message || 'Something went wrong');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        title: "Ett fel uppstod",
+        description: "Kunde inte starta betalningsflödet. Vänligen försök igen.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(null);
+    }
+  };
 
   return (
     <>
@@ -246,12 +296,21 @@ const Services = () => {
                     </p>
                     <div className="flex justify-between items-center">
                       <span className="text-embroidery-charcoal font-medium">{product.price}</span>
-                      <a 
-                        href="#contact" 
-                        className="px-4 py-2 bg-embroidery-beige text-embroidery-charcoal text-sm rounded hover:bg-embroidery-gold/20 transition-colors duration-300"
+                      <button 
+                        onClick={() => handleCheckout(product.priceId, product.id)}
+                        disabled={isLoading === product.id}
+                        className="px-4 py-2 bg-embroidery-gold text-white text-sm rounded hover:bg-embroidery-gold/90 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-embroidery-gold focus:ring-opacity-50 disabled:opacity-70"
                       >
-                        Beställ nu
-                      </a>
+                        {isLoading === product.id ? (
+                          <span className="flex items-center justify-center">
+                            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Bearbetar...
+                          </span>
+                        ) : "Köp nu"}
+                      </button>
                     </div>
                   </div>
                 </div>

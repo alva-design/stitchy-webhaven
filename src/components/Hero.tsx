@@ -88,24 +88,15 @@ const Hero = () => {
             <div className="relative overflow-hidden rounded-md shadow-xl">
               <div className="absolute inset-0 bg-embroidery-gold opacity-10"></div>
               <div className="hero-image-inner transition-transform duration-200 ease-out">
-                {imageError ? (
-                  <div className="flex items-center justify-center bg-embroidery-beige/50 h-96 w-full">
-                    <p className="text-embroidery-charcoal text-center">
-                      Vi kunde inte ladda bilden.<br />
-                      <span className="text-sm opacity-70">Vänligen kontrollera bildens URL.</span>
-                    </p>
-                  </div>
-                ) : (
-                  <img 
-                    src="/placeholder.svg" 
-                    alt="Vackert broderi från Beembroidery"
-                    className="w-full h-full object-cover filter brightness-95"
-                    onError={(e) => {
-                      console.error("Image failed to load");
-                      setImageError(true);
-                    }}
-                  />
-                )}
+                <img 
+                  src="/lovable-uploads/9c38391c-696a-488b-bb6e-905aa7136ebd.png" 
+                  alt="Vackert broderi med körsbär på en tygväska"
+                  className="w-full h-full object-cover filter brightness-95"
+                  onError={(e) => {
+                    console.error("Image failed to load");
+                    setImageError(true);
+                  }}
+                />
               </div>
             </div>
           </div>

@@ -7,13 +7,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Success from "./pages/success";
 
 const queryClient = new QueryClient();
 
 const App = () => {
   useEffect(() => {
     // Update document title
-    document.title = "Golden Thread Embroidery";
+    document.title = "Beembroidery - Förvandla dina idéer till konst";
   }, []);
 
   return (
@@ -24,6 +25,7 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/success" element={<Success />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
