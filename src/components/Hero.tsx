@@ -1,8 +1,9 @@
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -87,16 +88,24 @@ const Hero = () => {
             <div className="relative overflow-hidden rounded-md shadow-xl">
               <div className="absolute inset-0 bg-embroidery-gold opacity-10"></div>
               <div className="hero-image-inner transition-transform duration-200 ease-out">
-                <img 
-                  src="https://drive.google.com/uc?export=view&id=1KlScmSWBYuM76RO71RZAScQjc9DpN5N2" 
-                  alt="Elegant broderiverk på tyg"
-                  className="w-full h-full object-cover filter brightness-95"
-                  onError={(e) => {
-                    console.error("Image failed to load", e);
-                    // Fallback to placeholder if the image fails to load
-                    e.currentTarget.src = "/placeholder.svg";
-                  }}
-                />
+                {imageError ? (
+                  <div className="flex items-center justify-center bg-embroidery-beige/50 h-96 w-full">
+                    <p className="text-embroidery-charcoal text-center">
+                      Vi kunde inte ladda bilden.<br />
+                      <span className="text-sm opacity-70">Vänligen kontrollera bildens URL.</span>
+                    </p>
+                  </div>
+                ) : (
+                  <img 
+                    src="/placeholder.svg" 
+                    alt="Elegant broderiverk på tyg"
+                    className="w-full h-full object-cover filter brightness-95"
+                    onError={(e) => {
+                      console.error("Image failed to load");
+                      setImageError(true);
+                    }}
+                  />
+                )}
               </div>
             </div>
           </div>
