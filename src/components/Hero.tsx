@@ -58,13 +58,13 @@ const Hero = () => {
         <div className="md:w-1/2 pt-20 md:pt-0">
           <div className="transition-all duration-300 ease-out">
             <span className="inline-block px-3 py-1 text-xs tracking-wider bg-embroidery-beige/50 backdrop-blur-sm text-embroidery-charcoal rounded-full mb-6 animate-fade-in">
-              HANTVERK BRODERI
+              MASKINBRODERI FRÅN ÖSTERGÖTLAND
             </span>
             <h1 className="hero-title text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-embroidery-charcoal leading-tight transition-transform duration-200 ease-out animate-fade-in">
-              Tidlös Skönhet<br />Broderad för Hand
+              Professionella<br />Maskinbroderier
             </h1>
             <p className="hero-subtitle mt-6 text-embroidery-charcoal/70 max-w-md transition-transform duration-200 ease-out animate-fade-in opacity-0 animation-delay-200" style={{ animationDelay: '200ms' }}>
-              Utsökt handgjort broderi som förvandlar vanliga material till eleganta, personliga konstverk.
+              Skräddarsydda broderier med upp till 15 färger för företagsloggor och konstnärliga detaljer på dina produkter.
             </p>
             
             <div className="mt-10 animate-fade-in opacity-0" style={{ animationDelay: '400ms' }}>
@@ -98,7 +98,7 @@ const Hero = () => {
                 ) : (
                   <img 
                     src="/placeholder.svg" 
-                    alt="Elegant broderiverk på tyg"
+                    alt="Professionellt maskinbroderi"
                     className="w-full h-full object-cover filter brightness-95"
                     onError={(e) => {
                       console.error("Image failed to load");
