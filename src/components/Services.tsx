@@ -51,106 +51,229 @@ const services = [
   }
 ];
 
+const products = [
+  {
+    id: 1,
+    image: "/placeholder.svg",
+    title: "Personlig Tygväska",
+    description: "Tygväska med ditt namn eller valfritt broderi, perfekt för vardagsbruk.",
+    price: "299 kr"
+  },
+  {
+    id: 2,
+    image: "/placeholder.svg",
+    title: "Broderad Necessär",
+    description: "Stilfull necessär med unika broderier, perfekt för resan eller som present.",
+    price: "249 kr"
+  },
+  {
+    id: 3,
+    image: "/placeholder.svg",
+    title: "Anpassad Shoppingväska",
+    description: "Slitstark och rymlig shoppingväska med plats för din unika design.",
+    price: "349 kr"
+  }
+];
+
 const Services = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const shopRef = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
+  const [isShopInView, setIsShopInView] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const servicesObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsInView(true);
-          observer.disconnect();
+          servicesObserver.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    const shopObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsShopInView(true);
+          shopObserver.disconnect();
         }
       },
       { threshold: 0.2 }
     );
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+      servicesObserver.observe(sectionRef.current);
     }
 
-    return () => observer.disconnect();
+    if (shopRef.current) {
+      shopObserver.observe(shopRef.current);
+    }
+
+    return () => {
+      servicesObserver.disconnect();
+      shopObserver.disconnect();
+    };
   }, []);
 
   return (
-    <section 
-      id="services" 
-      ref={sectionRef}
-      className="relative py-24 px-6 md:px-12 lg:px-24 bg-embroidery-cream"
-    >
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{ 
-          backgroundImage: 'url("data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%239C92AC" fill-opacity="0.4"%3E%3Cpath d="M0 0h20v20H0V0zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm0-1a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/%3E%3C/g%3E%3C/svg%3E")',
-          backgroundSize: '20px 20px'
-        }} />
-      </div>
-      
-      <div className="container mx-auto relative z-10">
-        <div className={`transition-all duration-1000 ${isInView ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'}`}>
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="inline-block px-3 py-1 text-xs tracking-wider bg-embroidery-beige/50 backdrop-blur-sm text-embroidery-charcoal rounded-full mb-6">
-              VÅRA TJÄNSTER
-            </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-medium text-embroidery-charcoal">
-              Precision i varje stygn
-            </h2>
-            <div className="w-16 h-0.5 bg-embroidery-gold/40 mx-auto my-6"></div>
-            <p className="text-embroidery-charcoal/70">
-              Från företagsloggor till konstnärliga detaljer, våra moderna broderimaskiner 
-              skapar dekorativa broderier med upp till 15 färger för alla typer av textilier.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div 
-                key={service.id}
-                className={`bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-all duration-300 group ${
-                  isInView ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'
-                }`}
-                style={{ 
-                  transitionDelay: `${index * 100}ms`,
-                  transitionDuration: '700ms' 
-                }}
-              >
-                <div className="w-12 h-12 rounded-full bg-embroidery-beige/50 flex items-center justify-center mb-6 text-embroidery-charcoal group-hover:bg-embroidery-gold/20 transition-colors duration-300">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-serif text-embroidery-charcoal mb-3 group-hover:text-embroidery-gold transition-colors duration-300">
-                  {service.title}
-                </h3>
-                <p className="text-embroidery-charcoal/70">
-                  {service.description}
-                </p>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-16 bg-white rounded-lg p-8 md:p-12 shadow-sm">
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="md:w-3/4 mb-8 md:mb-0 md:pr-12">
-                <h3 className="text-2xl font-serif text-embroidery-charcoal mb-4">
-                  Letar du efter en skräddarsydd tjänst?
-                </h3>
-                <p className="text-embroidery-charcoal/70">
-                  Vi älskar att förverkliga unika visioner. Kontakta oss för att diskutera ditt broderi-projekt,
-                  och vi skapar något som är perfekt anpassat efter dina behov.
-                </p>
-              </div>
-              <div className="md:w-1/4 flex justify-center md:justify-end">
-                <a 
-                  href="#contact" 
-                  className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-medium text-white bg-embroidery-gold rounded-md hover:bg-embroidery-gold/90 transition-colors duration-300"
+    <>
+      <section 
+        id="services" 
+        ref={sectionRef}
+        className="relative py-24 px-6 md:px-12 lg:px-24 bg-embroidery-cream"
+      >
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{ 
+            backgroundImage: 'url("data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%239C92AC" fill-opacity="0.4"%3E%3Cpath d="M0 0h20v20H0V0zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm0-1a6 6 0 1 1 0-12 6 6 0 0 1 0 12z"/%3E%3C/g%3E%3C/svg%3E")',
+            backgroundSize: '20px 20px'
+          }} />
+        </div>
+        
+        <div className="container mx-auto relative z-10">
+          <div className={`transition-all duration-1000 ${isInView ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'}`}>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="inline-block px-3 py-1 text-xs tracking-wider bg-embroidery-beige/50 backdrop-blur-sm text-embroidery-charcoal rounded-full mb-6">
+                VÅRA TJÄNSTER
+              </span>
+              <h2 className="text-3xl md:text-4xl font-serif font-medium text-embroidery-charcoal">
+                Precision i varje stygn
+              </h2>
+              <div className="w-16 h-0.5 bg-embroidery-gold/40 mx-auto my-6"></div>
+              <p className="text-embroidery-charcoal/70">
+                Från företagsloggor till konstnärliga detaljer, våra moderna broderimaskiner 
+                skapar dekorativa broderier med upp till 15 färger för alla typer av textilier.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <div 
+                  key={service.id}
+                  className={`bg-white rounded-lg p-8 shadow-sm hover:shadow-md transition-all duration-300 group ${
+                    isInView ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'
+                  }`}
+                  style={{ 
+                    transitionDelay: `${index * 100}ms`,
+                    transitionDuration: '700ms' 
+                  }}
                 >
-                  <span className="relative">Kontakta Oss</span>
-                </a>
+                  <div className="w-12 h-12 rounded-full bg-embroidery-beige/50 flex items-center justify-center mb-6 text-embroidery-charcoal group-hover:bg-embroidery-gold/20 transition-colors duration-300">
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-serif text-embroidery-charcoal mb-3 group-hover:text-embroidery-gold transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  <p className="text-embroidery-charcoal/70">
+                    {service.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-16 bg-white rounded-lg p-8 md:p-12 shadow-sm">
+              <div className="flex flex-col md:flex-row items-center">
+                <div className="md:w-3/4 mb-8 md:mb-0 md:pr-12">
+                  <h3 className="text-2xl font-serif text-embroidery-charcoal mb-4">
+                    Letar du efter en skräddarsydd tjänst?
+                  </h3>
+                  <p className="text-embroidery-charcoal/70">
+                    Vi älskar att förverkliga unika visioner. Som ett litet företag kan vi erbjuda dig personlig service
+                    och nära samarbete genom hela processen. Kontakta oss för att diskutera ditt broderi-projekt,
+                    och vi skapar något som är perfekt anpassat efter dina behov.
+                  </p>
+                </div>
+                <div className="md:w-1/4 flex justify-center md:justify-end">
+                  <a 
+                    href="#contact" 
+                    className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-medium text-white bg-embroidery-gold rounded-md hover:bg-embroidery-gold/90 transition-colors duration-300"
+                  >
+                    <span className="relative">Kontakta Oss</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Shop Our Products Section */}
+      <section 
+        id="shop" 
+        ref={shopRef}
+        className="relative py-24 px-6 md:px-12 lg:px-24 bg-white"
+      >
+        <div className="absolute inset-0 bg-embroidery-beige/10 z-0"></div>
+        
+        <div className="container mx-auto relative z-10">
+          <div className={`transition-all duration-1000 ${isShopInView ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'}`}>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <span className="inline-block px-3 py-1 text-xs tracking-wider bg-embroidery-beige/50 backdrop-blur-sm text-embroidery-charcoal rounded-full mb-6">
+                VÅRA PRODUKTER
+              </span>
+              <h2 className="text-3xl md:text-4xl font-serif font-medium text-embroidery-charcoal">
+                Shoppa våra tygväskor
+              </h2>
+              <div className="w-16 h-0.5 bg-embroidery-gold/40 mx-auto my-6"></div>
+              <p className="text-embroidery-charcoal/70">
+                Våra handgjorda tygväskor med personliga broderier har blivit mycket populära. 
+                Perfekta som present eller för dig själv - leverans inom 3 dagar.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {products.map((product, index) => (
+                <div 
+                  key={product.id}
+                  className={`bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 group ${
+                    isShopInView ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <div className="relative overflow-hidden pb-[70%]">
+                    <img 
+                      src={product.image}
+                      alt={product.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-serif text-embroidery-charcoal mb-2 group-hover:text-embroidery-gold transition-colors duration-300">
+                      {product.title}
+                    </h3>
+                    <p className="text-embroidery-charcoal/70 mb-4 text-sm">
+                      {product.description}
+                    </p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-embroidery-charcoal font-medium">{product.price}</span>
+                      <a 
+                        href="#contact" 
+                        className="px-4 py-2 bg-embroidery-beige text-embroidery-charcoal text-sm rounded hover:bg-embroidery-gold/20 transition-colors duration-300"
+                      >
+                        Beställ nu
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-16 text-center">
+              <p className="text-embroidery-charcoal/80 max-w-2xl mx-auto mb-8">
+                Vill du ha en specialdesignad väska med ditt eget broderi? Vi kan skapa en helt unik produkt baserad på dina idéer.
+                Kontakta oss för att diskutera ditt projekt och få ett personligt prisförslag.
+              </p>
+              <a 
+                href="#contact" 
+                className="relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium text-white bg-embroidery-gold rounded-md hover:bg-embroidery-gold/90 transition-colors duration-300"
+              >
+                <span className="relative">Kontakta oss för specialbeställning</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 

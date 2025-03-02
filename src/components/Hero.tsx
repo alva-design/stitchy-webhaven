@@ -58,13 +58,13 @@ const Hero = () => {
         <div className="md:w-1/2 pt-20 md:pt-0">
           <div className="transition-all duration-300 ease-out">
             <span className="inline-block px-3 py-1 text-xs tracking-wider bg-embroidery-beige/50 backdrop-blur-sm text-embroidery-charcoal rounded-full mb-6 animate-fade-in">
-              MASKINBRODERI FRÅN ÖSTERGÖTLAND
+              BEEMBROIDERY
             </span>
             <h1 className="hero-title text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-embroidery-charcoal leading-tight transition-transform duration-200 ease-out animate-fade-in">
-              Professionella<br />Maskinbroderier
+              Förvandla Dina<br />Idéer Till Konst
             </h1>
             <p className="hero-subtitle mt-6 text-embroidery-charcoal/70 max-w-md transition-transform duration-200 ease-out animate-fade-in opacity-0 animation-delay-200" style={{ animationDelay: '200ms' }}>
-              Skräddarsydda broderier med upp till 15 färger för företagsloggor och konstnärliga detaljer på dina produkter.
+              Skräddarsydda broderier för företagsloggor och konstnärliga detaljer som förvandlar vanliga produkter till något unikt.
             </p>
             
             <div className="mt-10 animate-fade-in opacity-0" style={{ animationDelay: '400ms' }}>
@@ -73,8 +73,8 @@ const Hero = () => {
                 <span className="relative">Se Galleriet</span>
               </a>
               
-              <a href="#contact" className="relative inline-block text-embroidery-charcoal hover:text-embroidery-gold transition-colors duration-300 btn-hover">
-                Kontakta Oss
+              <a href="#shop" className="relative inline-block text-embroidery-charcoal hover:text-embroidery-gold transition-colors duration-300 btn-hover">
+                Shoppa Produkter
               </a>
             </div>
           </div>
@@ -98,7 +98,7 @@ const Hero = () => {
                 ) : (
                   <img 
                     src="/placeholder.svg" 
-                    alt="Professionellt maskinbroderi"
+                    alt="Vackert broderi från Beembroidery"
                     className="w-full h-full object-cover filter brightness-95"
                     onError={(e) => {
                       console.error("Image failed to load");

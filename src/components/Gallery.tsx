@@ -5,38 +5,38 @@ const galleryItems = [
   {
     id: 1,
     image: "https://images.unsplash.com/photo-1590075865003-e5494a989b21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    title: "Botanical Collection",
-    description: "Hand-stitched floral patterns with natural inspirations."
+    title: "Botanisk Kollektion",
+    description: "Vackra blomstermönster inspirerade av naturen."
   },
   {
     id: 2,
     image: "https://images.unsplash.com/photo-1635361645738-8fe971aea8dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    title: "Bespoke Monograms",
-    description: "Personalized initials and monograms for a timeless touch."
+    title: "Personliga Monogram",
+    description: "Skräddarsydda initialer och monogram för en tidlös touch."
   },
   {
     id: 3,
     image: "https://images.unsplash.com/photo-1552845108-5f775a2ccb9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    title: "Heritage Patterns",
-    description: "Traditional designs inspired by cultural artistry."
+    title: "Traditionella Mönster",
+    description: "Klassiska designs inspirerade av kulturellt hantverk."
   },
   {
     id: 4,
     image: "https://images.unsplash.com/photo-1603513492128-ba7bc9b3e143?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    title: "Custom Illustrations",
-    description: "Narratives and scenes brought to life through thread."
+    title: "Anpassade Illustrationer",
+    description: "Berättelser och motiv som väcks till liv genom trådar."
   },
   {
     id: 5,
     image: "https://images.unsplash.com/photo-1528301725143-1ba694832e77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    title: "Modern Abstract",
-    description: "Contemporary designs with bold textures and colors."
+    title: "Modern Abstrakt",
+    description: "Samtida designs med djärva texturer och färger."
   },
   {
     id: 6,
     image: "https://images.unsplash.com/photo-1597765654803-5fc1e0d1b909?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    title: "Home Accessories",
-    description: "Elegant embroidered pieces for your living space."
+    title: "Hemtextilier",
+    description: "Eleganta broderade detaljer för ditt hem."
   }
 ];
 
@@ -75,15 +75,15 @@ const Gallery = () => {
         <div className={`transition-all duration-1000 ${isInView ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-10'}`}>
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-block px-3 py-1 text-xs tracking-wider bg-embroidery-beige/50 backdrop-blur-sm text-embroidery-charcoal rounded-full mb-6">
-              OUR WORK
+              VÅRA ARBETEN
             </span>
             <h2 className="text-3xl md:text-4xl font-serif font-medium text-embroidery-charcoal">
-              Embroidery Collection
+              Broderikollektion
             </h2>
             <div className="w-16 h-0.5 bg-embroidery-gold/40 mx-auto my-6"></div>
             <p className="text-embroidery-charcoal/70">
-              Each piece tells a story through meticulous stitches and thoughtful design, 
-              creating something truly special for you to cherish.
+              Varje stygn berättar en historia genom noggrant arbete och genomtänkt design, 
+              och skapar något genuint unikt för dig att uppskatta.
             </p>
           </div>
           
@@ -125,7 +125,7 @@ const Gallery = () => {
               href="#contact" 
               className="relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium text-embroidery-charcoal bg-embroidery-beige/50 hover:bg-embroidery-beige transition-colors duration-300 rounded-md group"
             >
-              <span className="relative">Request Custom Work</span>
+              <span className="relative">Beställ Specialdesign</span>
             </a>
           </div>
         </div>
