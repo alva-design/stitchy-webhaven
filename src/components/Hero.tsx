@@ -91,6 +91,11 @@ const Hero = () => {
                   src="https://drive.google.com/uc?export=view&id=1KlScmSWBYuM76RO71RZAScQjc9DpN5N2" 
                   alt="Elegant broderiverk på tyg"
                   className="w-full h-full object-cover filter brightness-95"
+                  onError={(e) => {
+                    console.error("Image failed to load", e);
+                    // Fallback to placeholder if the image fails to load
+                    e.currentTarget.src = "/placeholder.svg";
+                  }}
                 />
               </div>
             </div>
