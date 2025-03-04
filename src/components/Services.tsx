@@ -59,26 +59,26 @@ const services = [
 const products = [
   {
     id: 1,
-    image: "/lovable-uploads/9c38391c-696a-488b-bb6e-905aa7136ebd.png",
-    title: "Personlig Tygväska",
-    description: "Tygväska med ditt namn eller valfritt broderi, perfekt för vardagsbruk.",
+    image: "/lovable-uploads/d2453928-6aef-48f4-bc39-b02edf20d180.png",
+    title: "Tygväska med Körsbär",
+    description: "Elegant tygväska med broderade körsbär, perfekt för vardaglig användning eller som present.",
     price: "299 kr",
     priceId: "price_1YOURPRICEID1", // This would be your actual Stripe price ID
   },
   {
     id: 2,
-    image: "/lovable-uploads/9c38391c-696a-488b-bb6e-905aa7136ebd.png",
-    title: "Broderad Necessär",
-    description: "Stilfull necessär med unika broderier, perfekt för resan eller som present.",
-    price: "249 kr",
+    image: "/lovable-uploads/bfdc7841-fe85-414a-a21d-b7e8f91ad84a.png",
+    title: "Tygväska med Citroner",
+    description: "Fräsch tygväska med broderade citroner och blad, idealisk för sommarutflykter.",
+    price: "299 kr",
     priceId: "price_1YOURPRICEID2", // This would be your actual Stripe price ID
   },
   {
     id: 3,
-    image: "/lovable-uploads/9c38391c-696a-488b-bb6e-905aa7136ebd.png",
-    title: "Anpassad Shoppingväska",
-    description: "Slitstark och rymlig shoppingväska med plats för din unika design.",
-    price: "349 kr",
+    image: "/lovable-uploads/294d5e78-ddaf-4b2a-8173-b3da5e70b60c.png",
+    title: "Tygväska med Höstmotiv",
+    description: "Rustik tygväska med broderade höstmotiv, perfekt för säsongen eller som gåva.",
+    price: "299 kr",
     priceId: "price_1YOURPRICEID3", // This would be your actual Stripe price ID
   }
 ];
@@ -131,7 +131,7 @@ const Services = () => {
     
     try {
       const stripe = await stripePromise;
-      if (!stripe) throw new Error("Stripe failed to initialize");
+      if (!stripe) throw new Error("Stripe kunde inte initialiseras");
       
       // Create a checkout session via our API
       const response = await fetch('/api/create-checkout-session', {
@@ -142,7 +142,7 @@ const Services = () => {
         body: JSON.stringify({ priceId }),
       });
       
-      if (!response.ok) throw new Error('Network response was not ok');
+      if (!response.ok) throw new Error('Nätverkssvaret var inte ok');
       
       const session = await response.json();
       
@@ -152,10 +152,10 @@ const Services = () => {
       });
       
       if (result.error) {
-        throw new Error(result.error.message || 'Something went wrong');
+        throw new Error(result.error.message || 'Något gick fel');
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Fel:', error);
       toast({
         title: "Ett fel uppstod",
         description: "Kunde inte starta betalningsflödet. Vänligen försök igen.",

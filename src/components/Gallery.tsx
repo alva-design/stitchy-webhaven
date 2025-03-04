@@ -4,39 +4,39 @@ import { useState, useEffect, useRef } from 'react';
 const galleryItems = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1590075865003-e5494a989b21?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    title: "Botanisk Kollektion",
-    description: "Vackra blomstermönster inspirerade av naturen."
+    image: "/lovable-uploads/0f19a76b-c0bc-49b7-afe8-2bcc6a2e1c18.png",
+    title: "Företagskepsar",
+    description: "Skräddarsydda broderier för kepsar med företagslogotyper."
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1635361645738-8fe971aea8dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    title: "Personliga Monogram",
-    description: "Skräddarsydda initialer och monogram för en tidlös touch."
+    image: "/lovable-uploads/4b8153f3-9244-4a46-a59c-6eb849d8a87d.png",
+    title: "Dekorativa Mönster",
+    description: "Eleganta dekorativa mönster för textilier och heminredning."
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1552845108-5f775a2ccb9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    title: "Traditionella Mönster",
-    description: "Klassiska designs inspirerade av kulturellt hantverk."
+    image: "/lovable-uploads/f7ce9d1b-53a4-4a6c-a558-ca3eb1b844d8.png",
+    title: "Tygväskor med Motiv",
+    description: "Vackra broderier på miljövänliga tygväskor för vardagsbruk."
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1603513492128-ba7bc9b3e143?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    title: "Anpassade Illustrationer",
-    description: "Berättelser och motiv som väcks till liv genom trådar."
+    image: "/lovable-uploads/9bb08e1b-a3aa-4344-b495-c0945b6bd74f.png",
+    title: "Handdukar med Text",
+    description: "Personliga handdukar med broderade namn eller meddelanden."
   },
   {
     id: 5,
-    image: "https://images.unsplash.com/photo-1528301725143-1ba694832e77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    title: "Modern Abstrakt",
-    description: "Samtida designs med djärva texturer och färger."
+    image: "/lovable-uploads/5e630697-cccc-4fb3-8f2c-d84cec707f9a.png",
+    title: "Fruktmotiv",
+    description: "Naturinspirerade broderier med frukter och blad på kökshanddukar."
   },
   {
     id: 6,
-    image: "https://images.unsplash.com/photo-1597765654803-5fc1e0d1b909?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
-    title: "Hemtextilier",
-    description: "Eleganta broderade detaljer för ditt hem."
+    image: "/lovable-uploads/30112295-f52a-417b-ac30-fbc4f7529b99.png",
+    title: "Citrus Kollektion",
+    description: "Fräscha och färgglada citrusmotiv för kökshanddukar och textilier."
   }
 ];
 

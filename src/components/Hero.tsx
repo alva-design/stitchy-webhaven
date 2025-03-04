@@ -89,8 +89,8 @@ const Hero = () => {
               <div className="absolute inset-0 bg-embroidery-gold opacity-10"></div>
               <div className="hero-image-inner transition-transform duration-200 ease-out">
                 <img 
-                  src="/lovable-uploads/9c38391c-696a-488b-bb6e-905aa7136ebd.png" 
-                  alt="Vackert broderi med körsbär på en tygväska"
+                  src="/lovable-uploads/d2453928-6aef-48f4-bc39-b02edf20d180.png" 
+                  alt="Vackert broderi på en tygväska"
                   className="w-full h-full object-cover filter brightness-95"
                   onError={(e) => {
                     console.error("Image failed to load");
